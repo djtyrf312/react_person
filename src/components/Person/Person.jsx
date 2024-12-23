@@ -1,28 +1,23 @@
 import React from 'react';
+import { Age } from '../Age/Age';
+import { Partner } from '../Partner/Partner';
 
-export const Person = ({ person }) => (
-  <section className="Person">
-    <h2 className="Person__name">{`My name is ${person.name}`}</h2>
-    <Age age={person.age} />
-    <Partner
-      isMarried={person.isMarried}
-      sex={person.sex}
-      partnerName={person.partnerName}
-    />
-  </section>
-);
+export const Person = ({ person }) => {
+  const { age, sex, partnerName, isMarried, name } = person;
 
-const Age = ({ age }) => age && <p className="Person__age">{`I am ${age}`}</p>;
-const Partner = ({ isMarried, sex, partnerName }) => {
-  let message = 'I am not married';
+  return (
+    <section className="Person">
+      <h2 className="Person__name">
+        {`My name is ${name}`}
+      </h2>
 
-  if (isMarried && sex === 'm') {
-    message = `${partnerName} is my wife`;
-  }
+      <Age age={age} />
 
-  if (isMarried && sex === 'f') {
-    message = `${partnerName} is my husband`;
-  }
-
-  return <p className="Person__partner">{`${message}`}</p>;
+      <Partner
+        isMarried={isMarried}
+        sex={sex}
+        partnerName={partnerName}
+      />
+    </section>
+  );
 };
